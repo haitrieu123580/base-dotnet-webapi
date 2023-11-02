@@ -10,10 +10,12 @@ namespace s002API.Services
     {
 
         private readonly ISupplierRepository _supplierRepo;
+        private readonly ISupplierCategoryRepo _supplierCategoryRepo;
         private readonly IMapper _mapper;
-        public SupplierService(ISupplierRepository supplierRepo, IMapper mapper)
+        public SupplierService(ISupplierRepository supplierRepo, ISupplierCategoryRepo supplierCategoryRepo, IMapper mapper)
         {
             _supplierRepo = supplierRepo;
+            _supplierCategoryRepo = supplierCategoryRepo;
             _mapper = mapper;
         }
         public IEnumerable<SupplierResDto> GetSupplierCategories()
@@ -22,12 +24,18 @@ namespace s002API.Services
             var supplierDtos = _mapper.Map<List<SupplierResDto>>(suppliers);
             return supplierDtos;
         }
-        public SupplierResDto GetSupplierWithCategoryById(string IdWithPrefix)
+        public SupplierResDto GetSupplierWithCategoryById(int scId)
         {
-            int id = int.Parse(IdWithPrefix.Substring(3));
+            // int id = int.Parse(IdWithPrefix.Substring(3));
             try
             {
-                if (_supplierRepo.isExist(id))
+                if (_supplierRepo.isExistSupplier(scId))
+                {
+                    // _supplierRepo.g
+                    var supplierCategory = _supplierCategoryRepo.GetSupplierCategoryById(scId);
+                    return _mapper.Map<SupplierResDto>(supplierCategory);
+                }
+                else
                 {
 
                 }
@@ -37,6 +45,22 @@ namespace s002API.Services
 
                 throw;
             }
+            return null;
+        }
+        public bool DeleteSupplierCategoryById(int scId)
+        {
+            try
+            {
+                return _supplierCategoryRepo.DeleteSupplierCategoryById(scId);
+            }
+            catch (System.Exception)
+            {
+
+                throw;
+            }
+        }
+        public SupplierResDto Create()
+        {
             return null;
         }
     }

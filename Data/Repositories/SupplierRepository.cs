@@ -16,24 +16,6 @@ namespace s002API.Data.Repositories
         {
             _context = context;
         }
-        // public IEnumerable<Supplier> GetSuppliers()
-        // {
-        //     return _context.Suppliers
-        //         .Include(s => s.SupplierCategories)
-        //         .ThenInclude(sc => sc.Category)
-        //         .ToList();
-        //     // return supplierCategories;
-        // }
-
-        // public IEnumerable<SupplierCategory> GetSuppliersWithCategories()
-        // {
-        //     // return _context.Suppliers
-        //     //     .Include(s => s.SupplierCategories)
-        //     //     .ThenInclude(sc => sc.Category)
-        //     //     .ToList();
-        //     return _context.SupplierCategories.ToList();
-
-        // }
         public IEnumerable<SupplierCategory> GetSupplierCategories()
         {
             return _context.SupplierCategories
@@ -41,11 +23,11 @@ namespace s002API.Data.Repositories
                     .Include(sc => sc.Category)
                     .ToList();
         }
-        public bool isExist(int id)
+        public bool isExistSupplier(int id)
         {
-            return false;
+            return true;
         }
-        public Supplier GetSupplierById(int id)
+        public SupplierCategory GetSupplierById(int id)
         {
             return null;
         }

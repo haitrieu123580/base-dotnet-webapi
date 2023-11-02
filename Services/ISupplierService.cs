@@ -8,7 +8,9 @@ namespace s002API.Services
     public interface ISupplierService
     {
         IEnumerable<SupplierResDto> GetSupplierCategories();
-        SupplierResDto GetSupplierWithCategoryById(string IdWithPrefix);
+        SupplierResDto GetSupplierWithCategoryById(int scId);
+        bool DeleteSupplierCategoryById(int scId);
+        SupplierResDto Create();
     }
 }
 

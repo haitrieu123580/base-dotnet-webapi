@@ -46,6 +46,7 @@ namespace s002API
             );
             services.AddScoped<ISupplierService, SupplierService>();
             services.AddScoped<ISupplierRepository, SupplierRepository>();
+            services.AddScoped<ISupplierCategoryRepo, SupplierCategoryRepo>();
             services.AddAutoMapper(typeof(AutoMapperProfile));
         }
 

@@ -22,22 +22,22 @@ namespace s002API.Controllers
         }
         [HttpGet]
         [Route("{id}")]
-        public ActionResult GetSupplierWithCategoryById(string id)
+        public ActionResult GetSupplierWithCategoryById(int id)
         {
-            Console.WriteLine( $"id {id}");
-            return Ok(_supplierService.GetSupplierCategories()); ;
+            return Ok(_supplierService.GetSupplierWithCategoryById(id)); ;
             // return Ok(_supplierService.GetSupplierCategories());
         }
         [HttpPost]
-        public ActionResult<IEnumerable<SupplierResDto>> CreateSupplier()
+        public ActionResult<SupplierResDto> CreateSupplier([FromBody] CreateSupplierReqDto data)
         {
-            return Ok(_supplierService.GetSupplierCategories());
+            Console.WriteLine(data);
+            return Ok(_supplierService.Create());
         }
         [HttpDelete]
         [Route("{id}")]
-        public ActionResult<IEnumerable<SupplierResDto>> DeleteSupplier()
+        public ActionResult DeleteSupplier(int id)
         {
-            return Ok(_supplierService.GetSupplierCategories());
+            return Ok(_supplierService.DeleteSupplierCategoryById(id));
         }
         [HttpDelete]
         public ActionResult<IEnumerable<SupplierResDto>> DeleteSuppliers()
@@ -50,5 +50,6 @@ namespace s002API.Controllers
         {
             return Ok(_supplierService.GetSupplierCategories());
         }
+
     }
 }
